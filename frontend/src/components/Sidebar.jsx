@@ -1,32 +1,65 @@
-function Sidebar() {
+function Sidebar({ onNewEvent }) {
+
+  const handleNewEvent = () => {
+    if (onNewEvent) {
+      onNewEvent();
+    }
+  };
+
   return (
-    <div className="w-64 bg-white shadow-lg p-5">
+    <div className="w-64 min-h-screen bg-white shadow-lg flex flex-col">
 
-      <h1 className="text-2xl font-bold mb-6">
-        Scheduler
-      </h1>
+      {/* Header */}
+      <div className="p-6 border-b">
+        <h1 className="text-2xl font-bold">
+          Scheduler
+        </h1>
+      </div>
 
-      <button className="bg-blue-500 text-white w-full py-2 rounded mb-4">
-        + New Event
-      </button>
+      {/* Content */}
+      <div className="flex-1 p-6">
 
-      <div className="space-y-3">
+        {/* New Event Button */}
+        <button
+          onClick={handleNewEvent}
+          className="bg-blue-500 hover:bg-blue-600 text-white w-full py-2 rounded-lg mb-8 transition"
+        >
+          + New Event
+        </button>
 
-        <div className="flex items-center gap-2">
-          <span className="w-3 h-3 bg-red-500 rounded"></span>
-          Urgent
+        {/* Priority Legend */}
+        <div>
+
+          <h3 className="text-sm font-semibold text-gray-500 mb-4">
+            PRIORITY
+          </h3>
+
+          <div className="space-y-3">
+
+            <div className="flex items-center gap-3 text-sm">
+              <span className="w-3 h-3 bg-red-500 rounded-full"></span>
+              <span>Urgent</span>
+            </div>
+
+            <div className="flex items-center gap-3 text-sm">
+              <span className="w-3 h-3 bg-yellow-400 rounded-full"></span>
+              <span>Important</span>
+            </div>
+
+            <div className="flex items-center gap-3 text-sm">
+              <span className="w-3 h-3 bg-orange-500 rounded-full"></span>
+              <span>Reminder</span>
+            </div>
+
+          </div>
+
         </div>
 
-        <div className="flex items-center gap-2">
-          <span className="w-3 h-3 bg-yellow-400 rounded"></span>
-          Important
-        </div>
+      </div>
 
-        <div className="flex items-center gap-2">
-          <span className="w-3 h-3 bg-orange-500 rounded"></span>
-          Reminder
-        </div>
-
+      {/* Footer */}
+      <div className="p-6 border-t text-xs text-gray-400">
+        Scheduling System
       </div>
 
     </div>
